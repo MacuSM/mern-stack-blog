@@ -9,6 +9,9 @@ app.use(cors());
 
 app.use(express.json());
 
+require('dotenv').config();
+const password = process.env.DB_PASSWORD;
+
 
 //Connecting RegisterPage.js to the database
 mongoose.connect('mongodb+srv://blog:Sbuda.211@cluster0.4motcbu.mongodb.net/mern-blog?retryWrites=true&w=majority', {
