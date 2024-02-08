@@ -4,11 +4,8 @@ const { default: mongoose } = require('mongoose');
 const User = require('./models/User');
 
 const app = express();
-
 app.use(cors());
-
 app.use(express.json());
-
 require('dotenv').config();
 const password = process.env.DB_PASSWORD;
 
@@ -25,9 +22,10 @@ db.once('open', () => {
 })
 
 
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
   const { username, password } = req.body;
-  res.json({requestData:{username,password}});
+  const userDoc = await User.create({username, password,});
+  res.json(userDoc);
 });
 
 const PORT = process.env.PORT || 4002;
